@@ -21,6 +21,7 @@ builder.Services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCase>();
 builder.Services.AddTransient<IAddCategoryUseCase, AddCategoryUseCase>();
 builder.Services.AddTransient<IEditCategoryUseCase, EditCategoryUseCase>();
 builder.Services.AddTransient<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>();
+builder.Services.AddTransient<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
 
 var app = builder.Build();
 
