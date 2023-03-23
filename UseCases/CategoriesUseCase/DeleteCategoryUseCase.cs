@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UseCases.DataStorePluginInterfaces;
 
-namespace UseCases
+namespace UseCases.CategoriesUseCase
 {
     public class DeleteCategoryUseCase : IDeleteCategoryUseCase
     {
