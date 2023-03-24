@@ -1,9 +1,5 @@
 ﻿@page "/product"
 
-@using CoreBusiness;
-@using UseCases.CategoriesUseCase;
-@using UseCases.UseCaseInterfaces;
-
 @inject IViewProductUseCases ViewProductUseCases
 @inject IGetCategoryByIdUseCase GetCategoryByIdUseCase
 
@@ -27,7 +23,7 @@
                 <tr>
                     <td>@GetCategoryByIdUseCase.Execute(product.CategoryId)?.Name</td>
                     <td>@product.Name</td>
-                    <td>@(Math.Round(product.Price,2))</td>
+                    <td>@(Math.Round(product.Price, 2))</td>
                     <td>@product.Quantity</td>
                 </tr>
             }

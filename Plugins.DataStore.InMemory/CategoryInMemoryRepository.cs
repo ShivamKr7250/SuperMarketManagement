@@ -16,6 +16,7 @@ namespace Plugins.DataStore.InMemory
                 new Category { CategoriesId= 1, Name = "Beverage", Description = "Beverage" },
                 new Category { CategoriesId= 2, Name = "Bakery", Description = "Bakery"},
                 new Category { CategoriesId= 3, Name = "Meat", Description = "Meat"},
+                new Category{ CategoriesId= 4,Name = "Indian Food", Description = "Snack"}
             };
         }
 
