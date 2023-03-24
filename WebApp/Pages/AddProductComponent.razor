@@ -1,0 +1,69 @@
+﻿@using UseCases.CategoriesUseCase;
+<h3>AddProduct</h3>
+
+@inject NavigationManager NavigationManager
+@inject IAddProductUseCase AddProductUseCase
+
+@if (product != null)
+{
+    <EditForm Model="product" OnInvalidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <ValidationSummary></ValidationSummary>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <InputText id="name" @bind-Value="product.Name" class="form-control"></InputText>
+        </div>
+
+        <div class="form-group">
+            <label for="category">CategoryId</label>
+            <select id="category" @bind="product.CategoryId">
+                <option value="0"></option>
+                @foreach (var cat in categories)
+                {
+                    <option value="@cat.CategoriesId"> </option>
+                }
+            </select>
+        </div>
+
+         <div class="form-group">
+            <label for="price">Name</label>
+            <InputText id="price" @bind-Value="product.Name" class="form-control"></InputText>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <InputText id="name" @bind-Value="product.Name" class="form-control"></InputText>
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary" @onclick="OnValidSubmit">Save</button>
+        <button type="button" class="btn btn-primary" @onclick="OnCancel">Cancel</button>
+
+    </EditForm>
+}
+
+@code {
+    private Product? product;
+    private IEnumerable<Category>? categories;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        product = new Product();
+        categories = ViewCategoriesUseCase.Execute();
+    }
+
+    private void OnValidSubmit()
+    {
+        AddProductUseCase.Execute(product);
+        NavigationManager.NavigateTo("/categories");
+    }
+
+    private void OnCancel()
+    {
+        NavigationManager.NavigateTo("/categories");
+    }
+
+}
