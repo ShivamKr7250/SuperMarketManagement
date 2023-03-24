@@ -1,8 +1,10 @@
-﻿@using UseCases.CategoriesUseCase;
+﻿@page "/addproduct"
+
 <h3>AddProduct</h3>
 
 @inject NavigationManager NavigationManager
 @inject IAddProductUseCase AddProductUseCase
+@inject IViewCategoriesUseCase ViewCategoriesUseCase
 
 @if (product != null)
 {
@@ -21,19 +23,19 @@
                 <option value="0"></option>
                 @foreach (var cat in categories)
                 {
-                    <option value="@cat.CategoriesId"> </option>
+                    <option value="@cat.CategoriesId">@cat.Name</option>
                 }
             </select>
         </div>
 
-         <div class="form-group">
-            <label for="price">Name</label>
-            <InputText id="price" @bind-Value="product.Name" class="form-control"></InputText>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <InputNumber id="price" @bind-Value="product.Price" @bind-Value:format="F2" class="form-control"></InputNumber>
         </div>
 
         <div class="form-group">
-            <label for="name">Name</label>
-            <InputText id="name" @bind-Value="product.Name" class="form-control"></InputText>
+            <label for="qty">Quantity</label>
+            <InputNumber id="qty" @bind-Value="product.Quantity" class="form-control"></InputNumber>
         </div>
         <br>
 
@@ -45,7 +47,7 @@
 
 @code {
     private Product? product;
-    private IEnumerable<Category>? categories;
+    private IEnumerable<Category> categories;
 
     protected override void OnInitialized()
     {
@@ -58,7 +60,7 @@
     private void OnValidSubmit()
     {
         AddProductUseCase.Execute(product);
-        NavigationManager.NavigateTo("/categories");
+        NavigationManager.NavigateTo("/product");
     }
 
     private void OnCancel()

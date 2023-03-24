@@ -1,5 +1,6 @@
 ﻿@page "/product"
 
+@inject NavigationManager NavigationManager
 @inject IViewProductUseCases ViewProductUseCases
 @inject IGetCategoryByIdUseCase GetCategoryByIdUseCase
 
@@ -31,6 +32,10 @@
     </table>
 }
 
+<br />
+
+<button type="button" @onclick="OnClickAddProduct" class="btn btn-primary">Add Product</button>
+
 @code {
 
     private IEnumerable<Product>? products;
@@ -40,5 +45,10 @@
         base.OnInitialized();
 
         products = ViewProductUseCases.Execute();
+    }
+
+    private void OnClickAddProduct()
+    {
+        NavigationManager.NavigateTo("addproduct");
     }
 }
