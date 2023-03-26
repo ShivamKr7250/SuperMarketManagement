@@ -19,8 +19,8 @@
 
         <div class="form-group">
             <label for="category">CategoryId</label>
-            <select id="category" @bind="product.CategoryId">
-                <option value="0"></option>
+            <select id="category" @bind="product.CategoryId" class="form-control">
+                <option selected></option>
                 @foreach (var cat in categories)
                 {
                     <option value="@cat.CategoriesId">@cat.Name</option>

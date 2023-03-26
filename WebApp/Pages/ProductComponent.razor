@@ -22,9 +22,9 @@
             @foreach (var product in products)
             {
                 <tr>
-                    <td>@GetCategoryByIdUseCase.Execute(product.CategoryId)?.Name</td>
+                    <td>@GetCategoryByIdUseCase.Execute(product.CategoryId.Value)?.Name</td>
                     <td>@product.Name</td>
-                    <td>@(Math.Round(product.Price, 2))</td>
+                    <td>@(Math.Round(product.Price.Value, 2))</td>
                     <td>@product.Quantity</td>
                 </tr>
             }
