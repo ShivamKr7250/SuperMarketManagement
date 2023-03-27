@@ -11,6 +11,7 @@ namespace Plugins.DataStore.InMemory
     public class ProductInMemoryRepository : IProductRepository
     {
         private List<Product> products;
+        private readonly object category;
 
         public ProductInMemoryRepository()
         {
@@ -43,6 +44,23 @@ namespace Plugins.DataStore.InMemory
         public IEnumerable<Product> GetProducts()
         {
             return products;
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            var productToUpdate = GetProductById(product.ProductId);
+            if (productToUpdate != null)
+            {
+                productToUpdate.Name = product.Name;
+                productToUpdate.CategoryId = product.CategoryId;
+                productToUpdate.Quantity = product.Quantity;
+                productToUpdate.Price = product.Price;
+            }
+        }
+
+        public Product GetProductById(int productId)
+        {
+            return products.FirstOrDefault(x => x.ProductId == productId);
         }
     }
 }

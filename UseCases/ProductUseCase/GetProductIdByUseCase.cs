@@ -5,21 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UseCases.DataStorePluginInterfaces;
-using UseCases.UseCaseInterfaces;
 
-namespace UseCases.CategoriesUseCase
+namespace UseCases.ProductUseCase
 {
-    public class AddProductUseCase : IAddProductUseCase
+    public class GetProductIdByUseCase : IGetProductIdByUseCase
     {
         private readonly IProductRepository productRepository;
 
-        public AddProductUseCase(IProductRepository productRepository)
+        public GetProductIdByUseCase(IProductRepository productRepository)
         {
             this.productRepository = productRepository;
         }
-        public void Execute(Product product)
+        public Product Execute(int productId)
         {
-            productRepository.AddProduct(product);
+            return productRepository.GetProductById(productId);
         }
     }
 }
