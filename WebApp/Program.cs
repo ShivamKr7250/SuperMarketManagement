@@ -29,6 +29,7 @@ builder.Services.AddTransient<IViewProductUseCases,  ViewProductUseCases>();
 builder.Services.AddTransient<IAddProductUseCase, AddProductUseCase>();
 builder.Services.AddTransient<IEditProductUseCase, EditProductUseCase>();
 builder.Services.AddTransient<IGetProductIdByUseCase, GetProductIdByUseCase>();
+builder.Services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
 
 var app = builder.Build();
 
