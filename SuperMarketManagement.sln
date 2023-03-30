@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreBusiness", "CoreBusines
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugins.DataStore.InMemory", "Plugins.DataStore.InMemory\Plugins.DataStore.InMemory.csproj", "{6DCC1FD3-A8F1-44E3-8614-200A61CD9FB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins.DataStore.SQL", "Plugins.DataStore.SQL\Plugins.DataStore.SQL.csproj", "{865FEE77-7689-43A2-8CC9-003E79F3CEC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6DCC1FD3-A8F1-44E3-8614-200A61CD9FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DCC1FD3-A8F1-44E3-8614-200A61CD9FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DCC1FD3-A8F1-44E3-8614-200A61CD9FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865FEE77-7689-43A2-8CC9-003E79F3CEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865FEE77-7689-43A2-8CC9-003E79F3CEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865FEE77-7689-43A2-8CC9-003E79F3CEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865FEE77-7689-43A2-8CC9-003E79F3CEC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
