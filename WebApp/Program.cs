@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
-using Plugins.DataStore.InMemory;
 using Plugins.DataStore.SQL;
 using UseCases;
 using UseCases.CategoriesUseCase;
@@ -9,6 +8,8 @@ using UseCases.DataStorePluginInterfaces;
 using UseCases.ProductUseCase;
 using UseCases.UseCaseInterfaces;
 using WebApp.Data;
+using Microsoft.AspNetCore.Identity;
+using UseCases.TransactionsUseCase;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,10 +23,26 @@ builder.Services.AddDbContext<MarketContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    //.AddEntityFrameworkStores<AccountContext>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", p => p.RequireClaim("Position", "Admin"));
+    options.AddPolicy("CashierOnly", p => p.RequireClaim("Position", "Cashier"));
+});
+
+
 // Dependency Injection for In-Memory Data Store
-builder.Services.AddScoped<ICategoryRepository, CategoryInMemoryRepository>();
-builder.Services.AddScoped<IProductRepository, ProductInMemoryRepository>();
-builder.Services.AddScoped<ITransactionRepository,TransactionInMemoryRepository>();
+//builder.Services.AddScoped<ICategoryRepository, CategoryInMemoryRepository>();
+//builder.Services.AddScoped<IProductRepository, ProductInMemoryRepository>();
+//builder.Services.AddScoped<ITransactionRepository,TransactionInMemoryRepository>();
+
+
+//Dependency Injection for SQL Data Store
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ITransactionRepository,TransactionRepository>();
 
 //Dependency Injection for Use Cases and Repositories
 builder.Services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCase>();
@@ -60,7 +77,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapRazorPages();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+//app.UseAuthentication();
 
 app.Run();

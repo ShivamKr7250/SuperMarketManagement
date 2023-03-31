@@ -7,7 +7,7 @@ using UseCases.DataStorePluginInterfaces;
 using UseCases.ProductUseCase;
 using UseCases.UseCaseInterfaces;
 
-namespace UseCases
+namespace UseCases.TransactionsUseCase
 {
     public class RecordTransactionUseCase : IRecordTransactionUseCase
     {
@@ -22,13 +22,13 @@ namespace UseCases
             this.getProductIdByUseCase = getProductIdByUseCase;
         }
 
-        public IGetProductIdByUseCase GetProductIdByUseCase { get; }
+        //public IGetProductIdByUseCase GetProductIdByUseCase { get; }
 
         public void Execute(string cashierName, int productId, int qty)
         {
             var product = getProductIdByUseCase.Execute(productId);
 
-            transactionRepository.Save(cashierName, productId,product.Name, product.Price.Value, product.Quantity.Value, qty);
+            transactionRepository.Save(cashierName, productId, product.Name, product.Price.Value, product.Quantity.Value, qty);
         }
     }
 }

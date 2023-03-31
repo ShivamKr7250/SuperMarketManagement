@@ -10,7 +10,7 @@ namespace Plugins.DataStore.InMemory
 {
     public class TransactionInMemoryRepository : ITransactionRepository
     {
-        private List<Transaction>? transactions;
+        private List<Transaction> transactions;
 
         public TransactionInMemoryRepository()
         {

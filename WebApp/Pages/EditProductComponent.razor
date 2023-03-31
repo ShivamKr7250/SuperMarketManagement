@@ -1,4 +1,6 @@
 ﻿@page "/editproduct/{productId}"
+@attribute [Authorize(Policy = "AdminOnly")]
+
 @using UseCases.ProductUseCase;
 
 

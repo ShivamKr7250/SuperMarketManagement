@@ -1,4 +1,6 @@
 ﻿@page "/categories"
+@attribute [Authorize(Policy = "AdminOnly")]
+
 <h3>Categories</h3>
 
 @inject NavigationManager NavigationManager

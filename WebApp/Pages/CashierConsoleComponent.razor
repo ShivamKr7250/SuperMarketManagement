@@ -1,30 +1,35 @@
 ﻿@page "/cashier_console"
 
-<div class="row">
-    <div class="col-7"><h3>Cashier`s Console</h3></div>
-    <div class="col-2"><label for="cashier">Cashier Name:</label></div>
-    <div class="col-3">
-        <div class="form-group">
-            <input type="text" id="cashier" class="form-control" @bind-value="cashierName" />
-        </div>
-    </div>
-</div>
+@attribute [Authorize(Policy = "CashierOnly")]
 
-<br />
-<div>
+@if(!string.IsNullOrWhiteSpace(cashierName))
+{
     <div class="row">
-        <div class="col-4">
-            <SelectProductForSellingComponent OnProdutSelected="SelectProduct"></SelectProductForSellingComponent>
-            <br />
-            <SellProductComponent CashierName="@cashierName" SelectedProduct="selectedProduct" OnProductSold="SellProduct"></SellProductComponent>
-        </div>
-
-        <div class="col">
-            <TodayTransactionComponent @ref="transactionComponent"></TodayTransactionComponent>
+        <div class="col-7"><h3>Cashier`s Console</h3></div>
+        <div class="col-2"><label for="cashier">Cashier Name:</label></div>
+        <div class="col-3">
+            <div class="form-group">
+                <input type="text" id="cashier" class="form-control" @bind-value="cashierName" />
+            </div>
         </div>
     </div>
-</div>
 
+    <br />
+    <div>
+        <div class="row">
+            <div class="col-4">
+                <SelectProductForSellingComponent OnProdutSelected="SelectProduct"></SelectProductForSellingComponent>
+                <br />
+                <SellProductComponent CashierName="@cashierName" SelectedProduct="selectedProduct" OnProductSold="SellProduct"></SellProductComponent>
+            </div>
+
+            <div class="col">
+                <br/>
+                <TodayTransactionComponent @ref="transactionComponent"></TodayTransactionComponent>
+            </div>
+        </div>
+    </div>
+}
 
 
 @code {
@@ -34,9 +39,15 @@
 
     private string cashierName;
 
-    protected override void OnInitialized()
+    [CascadingParameter]
+    private Task<AuthenticationState> _authState { get; set; }
+
+    private AuthenticationState authState;
+
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
+        authState = await _authState;
+        cashierName = authState.User.Identity.Name;
     }
 
     protected override void OnAfterRender(bool firstRender)

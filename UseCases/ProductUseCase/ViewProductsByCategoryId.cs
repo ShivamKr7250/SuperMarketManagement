@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UseCases.DataStorePluginInterfaces;
 
-namespace UseCases
+namespace UseCases.ProductUseCase
 {
     public class ViewProductsByCategoryId : IViewProductsByCategoryId
     {
@@ -18,7 +18,7 @@ namespace UseCases
         }
         public IEnumerable<Product> Execute(int categoryId)
         {
-           return productRepository.GetProductsByCategoryId(categoryId);
+            return productRepository.GetProductsByCategoryId(categoryId);
         }
     }
 }
