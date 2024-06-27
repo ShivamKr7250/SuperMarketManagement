@@ -16,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+//builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddDbContext<MarketContext>(options =>
 {
@@ -24,7 +24,7 @@ builder.Services.AddDbContext<MarketContext>(options =>
 });
 
 //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    //.AddEntityFrameworkStores<AccountContext>();
+//.AddEntityFrameworkStores<AccountContext>();
 
 builder.Services.AddAuthorization(options =>
 {

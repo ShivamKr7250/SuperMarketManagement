@@ -1,5 +1,5 @@
-﻿
-@inject IGetTodayTranscationUseCase GetTodayTranscationUseCase
+﻿ 
+@inject IGetTodayTranscationUseCase GetTodayTranscationUseCase;
 
 @if(transactions != null)
 {
@@ -34,6 +34,7 @@
 
 
 @code {
+
     private IEnumerable<Transaction> transactions;
 
     public void LoadTransactions(string cashierName)
